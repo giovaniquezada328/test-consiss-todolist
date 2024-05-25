@@ -1,0 +1,29 @@
+# Use root/example as user/password credentials
+version: '3.7'
+
+services:
+
+  mongo:
+    image: mongo:6.0.8
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: usermongo
+      MONGO_INITDB_ROOT_PASSWORD: 12345678
+    ports:
+      - 27017:27017
+    volumes:
+      - './mongodb_data:/data/db'
+      - './mongodb_config:/data/configdb'
+
+  mongo-express:
+    image: mongo-express:1.0.0-alpha.4
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: usermongo
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 12345678
+      ME_CONFIG_MONGODB_URL: mongodb://usermongo:12345678@mongo:27017/
+    depends_on:
+      - mongo

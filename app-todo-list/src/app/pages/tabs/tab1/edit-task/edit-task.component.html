@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row>
+    <ion-col col-12 style="text-align: center; margin-top: 20px;">
+      <h4>{{titleModal}} Tarea</h4>
+    </ion-col>
+  </ion-row>
+  <form [formGroup]="form" >
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-input placeholder="Titulo" type="text" formControlName="title"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-textarea placeholder="Descripcion" type="text" formControlName="description"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <ion-button color="primary" style="margin:17px auto; border-radius: 5px;display: block;width: 45%;"
+          [disabled]="!form.valid" (click)="onSubmit()">{{nameButton}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

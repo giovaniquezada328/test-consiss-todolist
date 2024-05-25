@@ -1,0 +1,6 @@
+.history/
+dist/
+logs/
+node_modules/
+mongodb_config/
+mongodb_data/

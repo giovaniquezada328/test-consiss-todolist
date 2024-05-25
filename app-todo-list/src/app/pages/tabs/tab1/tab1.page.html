@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Tareas Pendientes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tareas Pendientes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-end">
+      <ion-col size="4">  <ion-button color="primary" (click)="addTask('0','new')">Agregar</ion-button> </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-item *ngFor="let item of task; let i = index">
+      <ion-buttons slot="end" >
+          <ion-button (click)="presentActionSheet(item._id!, item)">
+            <ion-icon name="ellipsis-vertical" slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical" ></ion-icon >
+          </ion-button>
+      </ion-buttons>
+    <ion-label>
+      <h2>{{item.title | uppercase}}</h2>
+      <p> {{item.description}}</p>
+      <p>{{item.date | date:'short'}}</p>
+      <ion-text color="danger">
+        <p> <strong>{{item.status | uppercase}}</strong></p>
+      </ion-text>
+    </ion-label>
+  </ion-item>
+  </ion-list>
+
+</ion-content>
